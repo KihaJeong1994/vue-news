@@ -7,6 +7,23 @@
           <router-link v-bind:to="`/item/${item.id}`">{{item.user}}</router-link>
         </small>
       </p>
+      <ul class="news-list">
+        <li v-for="item in fetchedAsk" :key="item" class="post">
+          <div class="points">
+            {{item.points}}
+          </div>
+          <div>
+            <p class="news-title">
+              <a v-bind:href="item.url">{{item.title}}</a>
+            </p>
+            <small class="link-text">
+              {{item.time_ago}} by 
+              <!-- <router-link v-bind:to="'/user/'+item.user">{{item.user}}</router-link> -->
+              <router-link v-bind:to="`/item/${item.id}`" class="link-text">{{item.user}}</router-link>
+            </small>
+          </div>
+        </li>
+      </ul>
   </div>
 </template>
 
