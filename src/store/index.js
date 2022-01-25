@@ -6,27 +6,28 @@ import mutations from './mutations'
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-    state:{
-        news : [],
-        jobs : [],
-        ask : [],
-        user : {},
-        item : {},
+    state: {
+        news: [],
+        jobs: [],
+        ask: [],
+        user: {},
+        item: {},
+        list: []
     },
-    getters:{
-        fetchedNews(state){
+    getters: {
+        fetchedNews(state) {
             return state.news;
         },
-        fetchedJobs(state){
+        fetchedJobs(state) {
             return state.jobs;
         },
-        fetchedAsk(state){
+        fetchedAsk(state) {
             return state.ask;
         },
-        fetchedUser(state){
+        fetchedUser(state) {
             return state.user;
         },
-        fetchedItem(state){
+        fetchedItem(state) {
             return state.item;
         }
     },
