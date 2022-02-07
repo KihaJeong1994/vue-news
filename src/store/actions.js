@@ -1,7 +1,7 @@
 import { fetchNewsList, fetchAskList, fetchJobsList, fetchUserData, fetchItemData, fetchList } from '../api/index'
 export default { // actions 비동기 method 처리
   FETCH_NEWS(context) {
-    fetchNewsList()
+    return fetchNewsList()
       .then(response => {
         context.commit('SET_NEWS', response.data) // 동기 method는 반드시 mutation에서 실행
         return response
@@ -9,7 +9,7 @@ export default { // actions 비동기 method 처리
       .catch(error => console.log(error))
   },
   FETCH_JOBS(context) {
-    fetchJobsList()
+    return fetchJobsList()
       .then(response => {
         context.commit('SET_JOBS', response.data) // 동기 method는 반드시 mutation에서 실행
         return response
@@ -17,7 +17,7 @@ export default { // actions 비동기 method 처리
       .catch(error => console.log(error))
   },
   FETCH_ASK(context) {
-    fetchAskList()
+    return fetchAskList()
       .then(response => {
         context.commit('SET_ASK', response.data) // 동기 method는 반드시 mutation에서 실행
         return response
@@ -25,19 +25,19 @@ export default { // actions 비동기 method 처리
       .catch(error => console.log(error))
   },
   FETCH_USER(context, id) {
-    fetchUserData(id)
+    return fetchUserData(id)
       .then(response => {
         context.commit('SET_USER', response.data)
       })
   },
   FETCH_ITEM(context, id) {
-    fetchItemData(id)
+    return fetchItemData(id)
       .then(response => {
         context.commit('SET_ITEM', response.data)
       })
   },
   FETCH_LIST(context, pageName) {
-    fetchList(pageName)
+    return fetchList(pageName)
       .then(response => {
         context.commit('SET_LIST', response.data)
       })
