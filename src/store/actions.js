@@ -1,28 +1,39 @@
 import { fetchNewsList, fetchAskList, fetchJobsList, fetchUserData, fetchItemData, fetchList } from '../api/index'
 export default { // actions 비동기 method 처리
-  FETCH_NEWS(context) {
-    return fetchNewsList()
-      .then(response => {
-        context.commit('SET_NEWS', response.data) // 동기 method는 반드시 mutation에서 실행
-        return response
-      })
-      .catch(error => console.log(error))
+  //promise
+  // FETCH_NEWS(context) {
+  //   return fetchNewsList()
+  //     .then(response => {
+  //       context.commit('SET_NEWS', response.data) // 동기 method는 반드시 mutation에서 실행
+  //       return response
+  //     })
+  //     .catch(error => console.log(error))
+  // },
+
+  //async
+  async FETCH_NEWS(context) {
+    try {
+      const response = await fetchNewsList();
+      context.commit('SET_NEWS', response.data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
+    
   },
-  FETCH_JOBS(context) {
-    return fetchJobsList()
-      .then(response => {
-        context.commit('SET_JOBS', response.data) // 동기 method는 반드시 mutation에서 실행
-        return response
-      })
-      .catch(error => console.log(error))
+  async FETCH_JOBS(context){
+    try {
+      const response = fetchJobsList();
+      context.commit('SET_JOBS', response.data);
+      return response;
+    } catch (error) {
+      console.log(error);
+    }
   },
-  FETCH_ASK(context) {
-    return fetchAskList()
-      .then(response => {
-        context.commit('SET_ASK', response.data) // 동기 method는 반드시 mutation에서 실행
-        return response
-      })
-      .catch(error => console.log(error))
+  async FETCH_ASK(context) {
+      const response = await fetchAskList();
+      context.commit('SET_ASK', response.data) // 동기 method는 반드시 mutation에서 실행
+      return response
   },
   FETCH_USER(context, id) {
     return fetchUserData(id)
@@ -36,13 +47,9 @@ export default { // actions 비동기 method 처리
         context.commit('SET_ITEM', response.data)
       })
   },
-  FETCH_LIST(context, pageName) {
-    return fetchList(pageName)
-      .then(response => {
-        context.commit('SET_LIST', response.data)
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  async FETCH_LIST(context, pageName) {
+    const response = await fetchList(pageName);
+    context.commit('SET_LIST', response.data)
+    return response;
   }
 }
